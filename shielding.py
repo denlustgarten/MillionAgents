@@ -14,6 +14,7 @@ class Email:
         if dog_index == -1:
             print("Invalid email format")
             return ''
+            # raise TypeError("Invalid email format")
 
         return self.shield_character * dog_index + self.email[dog_index:]
 
@@ -65,12 +66,14 @@ class Skype:
             login_start_index = self.string_with_login.find('skype')
             login_end_index = self.string_with_login.find('?')
             login = self.string_with_login[login_start_index: login_end_index]
-            shield_ref = self.string_with_login.replace(login, 'skype:xxx')
+            # shield_ref = self.string_with_login.replace(login, 'skype:xxx')
+            shield_ref = f'{self.string_with_login[:login_start_index]}' \
+                         f'skype:xxx' \
+                         f'{self.string_with_login[login_end_index:]}'
             return shield_ref
 
 
 if __name__ == '__main__':
-
 
     # test emails
     email_1 = Email()
@@ -92,7 +95,7 @@ if __name__ == '__main__':
     number_5 = Number('+7 666 777  888', 'x', -1)
     number_6 = Number('+7 666 777  888', 'x', 0)
 
-    numbers = [number_1, number_2, number_3, number_4, number_5, number_6 ]
+    numbers = [number_1, number_2, number_3, number_4, number_5, number_6]
     for number in numbers:
         print(number.get_shield_number())
 
